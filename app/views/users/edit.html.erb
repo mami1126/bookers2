@@ -1,0 +1,32 @@
+<main>
+ <p id="notice"></p>
+ <div class="container">
+  <div class="row">
+   <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h2>User info</h2>
+  <% if @user.errors.any? %>
+  <%= @user.errors.count %>error prohibited this obj from being saved:
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+  <%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control mb-3' %>
+
+    <%= f.label :image %>
+    <%= f.file_field :profile_image, class: 'form-control mb-3', accept: 'image/*' %>
+
+
+    <%= f.label :Introduction %>
+    <%= f.text_area :introduction, class: 'form-control mb-3' %>
+
+    <%= f.submit "Update User", class: "btn btn-secondary" %>
+   </div>
+  </div>
+ </div>
+ </main>
+  <% end %>
